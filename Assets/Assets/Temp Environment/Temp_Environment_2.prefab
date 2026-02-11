@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2782717845673174554}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bcc56f381ca8f44b8fa94d26d05d0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveSection
-  speed: 7
   destroyZ: 60
 --- !u!1 &4010417842970011960
 GameObject:
@@ -177,7 +176,7 @@ GameObject:
   - component: {fileID: 2930027755600283571}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,7 +288,7 @@ GameObject:
   - component: {fileID: 6728238486103198275}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -401,7 +400,7 @@ GameObject:
   - component: {fileID: 256630442973490962}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

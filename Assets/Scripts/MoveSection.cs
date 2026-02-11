@@ -16,8 +16,15 @@ public class MoveSection : MonoBehaviour
 
     void Update()
     {
+<<<<<<< Updated upstream
         // move section backward consistently
         transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+=======
+        if (gameManager.IsInGame) // executes if the player is not dead
+        {
+            // move section backward consistently
+            transform.Translate(Vector3.back * gameManager.LevelSpeed * Time.deltaTime, Space.World);
+>>>>>>> Stashed changes
 
         // check if section reached destroy point
         if (transform.position.z < destroyZ)

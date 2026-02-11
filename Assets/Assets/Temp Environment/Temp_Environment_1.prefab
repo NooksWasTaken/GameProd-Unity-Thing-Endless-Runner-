@@ -51,7 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bcc56f381ca8f44b8fa94d26d05d0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+<<<<<<< Updated upstream
   speed: 7
+=======
+>>>>>>> Stashed changes
   destroyZ: 60
 --- !u!1 &1708379455309832936
 GameObject:
@@ -67,7 +70,7 @@ GameObject:
   - component: {fileID: 3927935000221855436}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,7 +295,7 @@ GameObject:
   - component: {fileID: 9024746666847201145}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -404,7 +407,7 @@ GameObject:
   - component: {fileID: 9192924834261280004}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -516,7 +519,7 @@ GameObject:
   - component: {fileID: 8515659947484959238}
   m_Layer: 0
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -628,7 +631,7 @@ GameObject:
   - component: {fileID: 6554493007435256396}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -740,7 +743,7 @@ GameObject:
   - component: {fileID: 3438041021156978258}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

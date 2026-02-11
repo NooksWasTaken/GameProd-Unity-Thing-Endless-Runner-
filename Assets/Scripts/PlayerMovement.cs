@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    GameManager gameManager;
+
     [Header("Movement")]
     public float moveSpeed = 6f;
 
@@ -15,10 +17,16 @@ public class PlayerMovement : MonoBehaviour
     private float startX;
     private float fixedZ;
 
+    internal Vector3 InitialPosition;
+
     void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
+
         startX = transform.position.x;   // horizontal center
         fixedZ = transform.position.z;   // lock Z forever, no going forward
+
+        InitialPosition = transform.position;
     }
 
     void Update()
@@ -43,4 +51,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // future dev should make the plane tilt depending on which direction ehe
+
+
+    // Checks for collision
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Obstacle")) gameManager.Lives--;
+    }
 }
