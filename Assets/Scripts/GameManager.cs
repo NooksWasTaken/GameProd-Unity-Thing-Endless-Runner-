@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [Header("Scripts")]
+    SaveManager saveManager;
     SectionManager sectionSpawner;
     PlayerMovement player;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         Lives = 1;
         IsInGame = false;
 
+        saveManager = FindFirstObjectByType<SaveManager>();
         sectionSpawner = FindFirstObjectByType<SectionManager>();
         player = FindFirstObjectByType<PlayerMovement>();
     }
@@ -53,6 +55,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (HighScore > saveManager.saveData.HighScore) {
+                saveManager.saveData.HighScore = HighScore;
+                saveManager.Save();
+            }
             sectionSpawner.enabled = false;
             player.enabled = false;
 
@@ -62,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     void ScoreCounter()
     {
+        HighScore = saveManager.saveData.HighScore;
+
         CurrentScore++;
         if (CurrentScore > HighScore) HighScore = CurrentScore;
 
