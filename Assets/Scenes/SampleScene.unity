@@ -1301,6 +1301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2022650807}
+  - component: {fileID: 2022650808}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1323,8 +1324,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1179163035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!114 &2022650808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,15 +1333,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2022650806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5043160526e7b54caecc1b875dda2ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 32923e4fe2b2f51468b2da13e452d297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   LevelSpeed: 7
-  Lives: 1
+  Lives: 0
   StartBtn: {fileID: 1686563331}
   CurrentScore_UI: {fileID: 122602756}
   HighScore_UI: {fileID: 1055471224}
->>>>>>> Stashed changes
 --- !u!1 &2030832102
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MoveSection : MonoBehaviour
@@ -7,24 +8,31 @@ public class MoveSection : MonoBehaviour
     public float destroyZ = 60f; // z position at which section is destroyed
 
     private SectionManager spawner;
+    private GameManager gameManager;
 
     void Start()
     {
         // find the SectionManager in the scene
         spawner = FindFirstObjectByType<SectionManager>();
+
+        // looks for gameManager in the scene
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void Update()
     {
-<<<<<<< Updated upstream
-        // move section backward consistently
-        transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
-=======
-        if (gameManager.IsInGame) // executes if the player is not dead
+        // if GameManager exists and the game is not running, do nothing (avoids crashing)
+        if (gameManager != null && !gameManager.IsInGame)
+            return;
+
+        // if GameManager exists, use its level speed
+        if (gameManager != null)
         {
-            // move section backward consistently
-            transform.Translate(Vector3.back * gameManager.LevelSpeed * Time.deltaTime, Space.World);
->>>>>>> Stashed changes
+            speed = gameManager.LevelSpeed;
+        }
+
+        // move section backward
+        transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
 
         // check if section reached destroy point
         if (transform.position.z < destroyZ)
@@ -32,6 +40,5 @@ public class MoveSection : MonoBehaviour
             spawner.RemoveSection(gameObject);
         }
     }
-
     // mark smells
 }
