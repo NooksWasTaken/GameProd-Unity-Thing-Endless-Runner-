@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
     private float startX;
     private float fixedZ;
 
+    private float originalSpeed;
+    private bool isinvincible;
+    private Coroutine speedCoroutine;
+    private Coroutine invCoroutine;
+
     internal Vector3 InitialPosition;
 
     void Start()
@@ -25,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
         startX = transform.position.x;   // horizontal center
         fixedZ = transform.position.z;   // lock Z forever, no going forward
-
+        isinvincible = false;
         InitialPosition = transform.position;
     }
 
@@ -56,6 +62,47 @@ public class PlayerMovement : MonoBehaviour
     // Checks for collision
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Obstacle")) gameManager.Lives--;
+        if (collision.collider.CompareTag("Obstacle") && !isinvincible) gameManager.Lives--;
+    }
+
+    public void ActivateSpeedBoost(float multiplier, float duration)
+    {
+        if (speedCoroutine != null)
+            StopCoroutine(speedCoroutine);
+
+        speedCoroutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
+    }
+
+    public void ActivateInvincibility(float duration)
+    {
+        if (invCoroutine != null)
+            StopCoroutine(invCoroutine);
+
+        invCoroutine = StartCoroutine(InvincibilityRoutine(duration));
+    }
+
+    IEnumerator SpeedBoostRoutine(float multiplier, float duration)
+    {
+        Debug.Log("Speed boost ON");
+
+        originalSpeed = moveSpeed;
+        moveSpeed = originalSpeed * multiplier;
+
+        yield return new WaitForSeconds(duration);
+
+        moveSpeed = originalSpeed;
+
+        Debug.Log("Speed boost OFF");
+    }
+
+    IEnumerator InvincibilityRoutine(float duration)
+    {
+        Debug.Log("Invincibility ON");
+        isinvincible = true;
+
+        yield return new WaitForSeconds(duration);
+        isinvincible = false;
+
+        Debug.Log("Invincibility OFF");
     }
 }

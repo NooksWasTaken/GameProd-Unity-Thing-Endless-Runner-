@@ -16,6 +16,8 @@ public class SectionManager : MonoBehaviour
 
     private float nextSpawnZ = 0f;          // z position to spawn next section (jank)
 
+    public GameObject[] sectionPowerUps;
+
     // a list of ALL ACTIVE SECTIONS during play
     private List<GameObject> activeSections = new List<GameObject>();
 
