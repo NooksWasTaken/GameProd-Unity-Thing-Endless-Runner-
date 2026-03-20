@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float startX;
     private float fixedZ;
+
+    private float originalSpeed;
+    private Coroutine speedCoroutine;
 
     internal Vector3 InitialPosition;
 
@@ -57,5 +61,27 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Obstacle")) gameManager.Lives--;
+    }
+
+    public void ActivateSpeedBoost(float multiplier, float duration)
+    {
+        if (speedCoroutine != null)
+            StopCoroutine(speedCoroutine);
+
+        speedCoroutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
+    }
+
+    IEnumerator SpeedBoostRoutine(float multiplier, float duration)
+    {
+        Debug.Log("Speed boost ON");
+
+        originalSpeed = moveSpeed;
+        moveSpeed = originalSpeed * multiplier;
+
+        yield return new WaitForSeconds(duration);
+
+        moveSpeed = originalSpeed;
+
+        Debug.Log("Speed boost OFF");
     }
 }
