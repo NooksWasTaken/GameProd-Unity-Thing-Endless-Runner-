@@ -69,4 +69,6 @@ public class SoundManager : MonoBehaviour
         currentSource = nextSource;
         nextSource = temp;
     }
+
+    // sound effects stuff go here augh
 }
