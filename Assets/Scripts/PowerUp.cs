@@ -9,7 +9,7 @@ public class SpeedPowerUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerMove player = other.GetComponent<PlayerMove>();
+            PlayerMove player = other.GetComponent<PlayerMove>(
 
             if (player != null)
             {
