@@ -6219,6 +6219,7 @@ MonoBehaviour:
   - {fileID: 1996653770}
   powerupPrefabs:
   - {fileID: 4677393581289411131, guid: ab78bbef970383b48bd29caa76037c21, type: 3}
+  - {fileID: 4677393581289411131, guid: b72ea7f203e2b08468034841ccff9570, type: 3}
   - {fileID: 4564179301237730555, guid: eb3828c230f482f498e1c7cf2e5c78fd, type: 3}
   PowerupSpawnChance: 0.42
   spawnInterval: 4
@@ -6578,7 +6579,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144973318}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12512,7 +12513,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568643744}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12604,7 +12605,7 @@ Transform:
   m_GameObject: {fileID: 1604572429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -2, z: 49.5}
+  m_LocalPosition: {x: 1.5, y: 3.3, z: 49.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12831,7 +12832,7 @@ Transform:
   m_GameObject: {fileID: 1765161007}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34.9, y: -2, z: 50}
+  m_LocalPosition: {x: -34.9, y: 3.3000002, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13300,7 +13301,7 @@ Transform:
   m_GameObject: {fileID: 1996653769}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.6, y: -2, z: 49.5}
+  m_LocalPosition: {x: 39.6, y: 3.3000002, z: 49.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13856,7 +13857,7 @@ GameObject:
   - component: {fileID: 5282926626875626520}
   - component: {fileID: 3460633436955006199}
   - component: {fileID: 134333808682957648}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: ComPlaneV1_FrontLandingGear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13874,7 +13875,7 @@ GameObject:
   - component: {fileID: 7370455130395332540}
   - component: {fileID: 8659327471423473977}
   - component: {fileID: 4492593454437864830}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: ComPlaneV1_LeftLandingGear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14009,7 +14010,7 @@ GameObject:
   - component: {fileID: 7316628905950622961}
   - component: {fileID: 3445952279256929972}
   - component: {fileID: 3232928720892566680}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: ComPlaneV1_RightLandingGear
   m_TagString: Untagged
   m_Icon: {fileID: 0}

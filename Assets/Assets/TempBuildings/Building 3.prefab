@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 649095303233971346}
   - component: {fileID: 9132553390972615052}
   - component: {fileID: 2362346858269186892}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Building 3
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 1490142484482345372}
   - component: {fileID: 6996373754641373452}
   - component: {fileID: 7884825558728287753}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (10)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

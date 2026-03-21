@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6100205790930265327}
   - component: {fileID: 466866039394233556}
   - component: {fileID: 7291614759381474856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (9)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 2380605215448628039}
   - component: {fileID: 6431418773768679200}
   - component: {fileID: 6483025428372330236}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bulding 4
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

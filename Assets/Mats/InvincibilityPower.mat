@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpeedPower
+  m_Name: InvincibilityPower
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -142,9 +142,9 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.8415094, g: 0.72339743, b: 0.23339976, a: 0.65882355}
-    - _Color: {r: 0.8415094, g: 0.72339743, b: 0.23339972, a: 0.65882355}
-    - _EmissionColor: {r: 27.43713, g: 18.098564, b: 0, a: 1}
+    - _BaseColor: {r: 0.073584795, g: 1, b: 0.9040483, a: 0.65882355}
+    - _Color: {r: 0.07358477, g: 1, b: 0.9040483, a: 0.65882355}
+    - _EmissionColor: {r: 0, g: 29.85706, b: 22.84257, a: 1}
     - _SpecColor: {r: 1, g: 0.89937365, b: 0.20943397, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

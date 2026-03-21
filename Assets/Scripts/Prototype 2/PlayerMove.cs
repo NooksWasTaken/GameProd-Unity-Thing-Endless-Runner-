@@ -15,8 +15,11 @@ public class PlayerMove : MonoBehaviour
     public float tiltAngle = 15f; // maximum tilt in degrees
     public float tiltSpeed = 5f;  // how fast the tilt interpolates
 
+    private bool isinvincible = false;
     private float originalSpeed;
+
     private Coroutine speedCoroutine;
+    private Coroutine invCoroutine;
 
     public Vector3 InitialPosition;
 
@@ -89,7 +92,7 @@ public class PlayerMove : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // reduce lives on obstacle collision
-        if (collision.collider.CompareTag("Obstacle"))
+        if (collision.collider.CompareTag("Obstacle") && !isinvincible)
         {
             gameManager.Lives--;
 
@@ -104,6 +107,28 @@ public class PlayerMove : MonoBehaviour
             StopCoroutine(speedCoroutine);
 
         speedCoroutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
+    }
+
+    public void ActivateInvincibility(float duration)
+    {
+        if (invCoroutine != null)
+            StopCoroutine(invCoroutine);
+
+        invCoroutine = StartCoroutine(InvincibilityRoutine(duration));
+    }
+
+    IEnumerator InvincibilityRoutine(float duration)
+    {
+        Debug.Log("Invincibility ON");
+        isinvincible = true;
+        this.gameObject.layer = 3;      // set to "immune" layer
+        Debug.Log("LOG TEXT 1");
+
+        yield return new WaitForSeconds(duration);
+        isinvincible = false;
+        this.gameObject.layer = 8;      // set back to player layer
+
+        Debug.Log("Invincibility OFF");
     }
 
     public IEnumerator SpeedBoostRoutine(float multiplier, float duration)

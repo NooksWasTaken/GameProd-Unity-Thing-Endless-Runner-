@@ -8,7 +8,7 @@ public class InvincibilityPowerUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerMovement player = other.GetComponent<PlayerMovement>();
+            PlayerMove player = other.GetComponent<PlayerMove>();
 
             if (player != null)
             {

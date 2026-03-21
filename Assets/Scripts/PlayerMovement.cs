@@ -106,25 +106,4 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Invincibility OFF");
     }
 
-    public void ActivateSpeedBoost(float multiplier, float duration)
-    {
-        if (speedCoroutine != null)
-            StopCoroutine(speedCoroutine);
-
-        speedCoroutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
-    }
-
-    IEnumerator SpeedBoostRoutine(float multiplier, float duration)
-    {
-        Debug.Log("Speed boost ON");
-
-        originalSpeed = moveSpeed;
-        moveSpeed = originalSpeed * multiplier;
-
-        yield return new WaitForSeconds(duration);
-
-        moveSpeed = originalSpeed;
-
-        Debug.Log("Speed boost OFF");
-    }
 }
