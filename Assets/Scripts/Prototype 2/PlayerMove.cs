@@ -121,12 +121,12 @@ public class PlayerMove : MonoBehaviour
     {
         Debug.Log("Invincibility ON");
         isinvincible = true;
-        this.gameObject.layer = 3;      // set to "immune" layer
+        this.gameObject.layer = 8;      // set to "immune" layer
         Debug.Log("LOG TEXT 1");
 
         yield return new WaitForSeconds(duration);
         isinvincible = false;
-        this.gameObject.layer = 8;      // set back to player layer
+        this.gameObject.layer = 3;      // set back to player layer
 
         Debug.Log("Invincibility OFF");
     }
