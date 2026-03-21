@@ -22,17 +22,12 @@ public class MoveSection : MonoBehaviour
     void Update()
     {
         // if GameManager exists and the game is not running, do nothing (avoids crashing)
-        if (gameManager != null && !gameManager.IsInGame)
+        //if (gameManager != null && !gameManager.IsInGame)
             return;
 
-        // if GameManager exists, use its level speed
-        if (gameManager != null)
-        {
-            speed = gameManager.LevelSpeed;
-        }
 
         // move section backward
-        transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+        //transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
 
         // check if section reached destroy point
         if (transform.position.z < destroyZ)

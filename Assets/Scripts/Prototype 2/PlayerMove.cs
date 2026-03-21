@@ -1,7 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
+    GameManager gameManager;
     public Rigidbody rb;
 
     [Header("Player Forces")]     // player control strength
@@ -13,13 +15,25 @@ public class PlayerMove : MonoBehaviour
     public float tiltAngle = 15f; // maximum tilt in degrees
     public float tiltSpeed = 5f;  // how fast the tilt interpolates
 
+    private float originalSpeed;
+    private Coroutine speedCoroutine;
+
+    public Vector3 InitialPosition;
+
+    [HideInInspector] public bool canMove = false; // controlled by GameManager
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gameManager = FindFirstObjectByType<GameManager>();
+
+        InitialPosition = transform.position;
     }
 
     void FixedUpdate()
     {
+        if (!canMove) return;
+
         Movement();
         ApplyTilt();
     }
@@ -70,5 +84,42 @@ public class PlayerMove : MonoBehaviour
 
         // smoothly interpolate to target rotation
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.fixedDeltaTime * tiltSpeed);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // reduce lives on obstacle collision
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            gameManager.Lives--;
+
+            if (gameManager.Lives <= 0)
+                gameManager.SetGameState(GameStates.GAMEOVER);
+        }
+    }
+
+    public void ActivateSpeedBoost(float multiplier, float duration)
+    {
+        if (speedCoroutine != null)
+            StopCoroutine(speedCoroutine);
+
+        speedCoroutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
+    }
+
+    public IEnumerator SpeedBoostRoutine(float multiplier, float duration)
+    {
+        Debug.Log("Speed boost ON");
+
+        this.gameObject.tag = "Untagged";   // bandaid solution, currently stacking speed buffs makes the buffed speed its new permanent speed
+                                            // so we just change the player tag so colliding with the power up doesnt trigger the buff
+        originalSpeed = forwardForce;
+        forwardForce = originalSpeed * multiplier;
+
+        yield return new WaitForSeconds(duration);
+
+        forwardForce = originalSpeed;
+        this.gameObject.tag = "Player";     // set it back to player tag
+
+        Debug.Log("Speed boost OFF");
     }
 }
