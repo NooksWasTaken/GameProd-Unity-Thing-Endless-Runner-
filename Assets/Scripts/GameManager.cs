@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using GameAnalyticsSDK;
 
 public class GameManager : MonoBehaviour
 {
@@ -133,6 +134,7 @@ public class GameManager : MonoBehaviour
         currentScore = 0;
         Lives = initialLives;
         player.transform.position = player.InitialPosition;
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "Run");
 
         // removes any momentum stored
         player.rb.linearVelocity = Vector3.zero;

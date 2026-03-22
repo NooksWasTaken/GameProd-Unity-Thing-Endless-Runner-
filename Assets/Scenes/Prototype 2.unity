@@ -148,6 +148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1681021672}
   - {fileID: 959816315}
   - {fileID: 397623791}
   - {fileID: 2115201468}
@@ -293,6 +294,7 @@ GameObject:
   - component: {fileID: 276290391}
   - component: {fileID: 276290390}
   - component: {fileID: 276290389}
+  - component: {fileID: 276290392}
   m_Layer: 0
   m_Name: Restart Button
   m_TagString: Untagged
@@ -376,6 +378,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 276290392}
+        m_TargetAssemblyTypeName: FunnelEvent, Assembly-CSharp
+        m_MethodName: TrackFinishFunnel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &276290390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +428,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276290387}
   m_CullTransparentMesh: 1
+--- !u!114 &276290392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276290387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef58a10ee60407419b3cead08d9ccde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FunnelEvent
+  stepNumber: 2
+  stepName: Game_Restarted
 --- !u!1 &383387199
 GameObject:
   m_ObjectHideFlags: 0
@@ -12716,6 +12744,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604572429}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1681021671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1681021672}
+  - component: {fileID: 1681021673}
+  m_Layer: 0
+  m_Name: GameAnalyticsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1681021672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681021671}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -90.152016, y: -50.43808, z: 163.53156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 198802316}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1681021673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681021671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea08a9aad92b2c647b51bbd5b7541d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1702203511
 GameObject:
   m_ObjectHideFlags: 0
@@ -13201,6 +13273,7 @@ GameObject:
   - component: {fileID: 1928996844}
   - component: {fileID: 1928996843}
   - component: {fileID: 1928996842}
+  - component: {fileID: 1928996845}
   m_Layer: 0
   m_Name: Start Button
   m_TagString: Untagged
@@ -13284,6 +13357,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1928996845}
+        m_TargetAssemblyTypeName: FunnelEvent, Assembly-CSharp
+        m_MethodName: TrackFinishFunnel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1928996843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13322,6 +13407,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928996840}
   m_CullTransparentMesh: 1
+--- !u!114 &1928996845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928996840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef58a10ee60407419b3cead08d9ccde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FunnetEvent
+  stepNumber: 1
+  stepName: Game_Started
 --- !u!1 &1996653769
 GameObject:
   m_ObjectHideFlags: 0

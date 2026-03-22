@@ -62,7 +62,11 @@ public class PlayerMovement : MonoBehaviour
     // Checks for collision
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Obstacle") && !isinvincible) gameManager.Lives--;
+        if (collision.collider.CompareTag("Obstacle") && !isinvincible)
+        {
+            gameManager.Lives--;
+            GameAnalyticsManager.instance.FunnelFinished(3, "Player_Obtained_Powerup");
+        }
     }
 
     public void ActivateSpeedBoost(float multiplier, float duration)
