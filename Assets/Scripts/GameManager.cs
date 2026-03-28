@@ -1,6 +1,13 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+<<<<<<< Updated upstream
+=======
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+using GameAnalyticsSDK;
+using UnityEngine.Rendering;
+>>>>>>> Stashed changes
 
 public class GameManager : MonoBehaviour
 {
@@ -23,14 +30,45 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button StartBtn;
     [SerializeField] private TextMeshProUGUI CurrentScore_UI;
     [SerializeField] private TextMeshProUGUI HighScore_UI;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private TextMeshProUGUI CurrentSpeed_UI;
+    [Space]
+    [SerializeField] private Image zoneTimer;
+    [SerializeField] private TextMeshProUGUI Warning_UI;
+
+    [Header("Sliders")]
+    [SerializeField] private Slider sliderIPU;
+    [SerializeField] private Slider sliderSPU;
+    public float startIpu = 4f;
+    public float startSpu = 3f;
+    private float current;
+    private bool isCounting = false;
+
+
+    private Coroutine scalingRoutine;
+    private Coroutine warningRoutine;
+>>>>>>> Stashed changes
 
     void Start()
     {
         Lives = 1;
         IsInGame = false;
 
+<<<<<<< Updated upstream
         sectionSpawner = FindFirstObjectByType<SectionManager>();
         player = FindFirstObjectByType<PlayerMovement>();
+=======
+        zoneTimer.fillAmount = 0f;
+        //Warning_UI.gameObject.SetActive(false);
+        RestartBtn.gameObject.SetActive(false);
+
+        current = start;
+
+
+        UpdateUI();
+        SetGameState(GameStates.PAUSED);
+>>>>>>> Stashed changes
     }
 
     void Update()
@@ -78,4 +116,110 @@ public class GameManager : MonoBehaviour
 
         IsInGame = true;
     }
+<<<<<<< Updated upstream
 }
+=======
+
+    // restart game by reloading scene to fully refresh everything
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    // difficulty scaling over time
+    private IEnumerator SpeedScalingDifficulty()
+    {
+        while (currentState == GameStates.RUNNING)
+        {
+            yield return new WaitForSeconds(timeToScale);
+            player.forwardForce += speedIncrease;
+        }
+    }
+
+    // function name says it all
+    private void UpdateUI()
+    {
+        CurrentScore_UI.text = $"<b>Score: </b>{currentScore}";
+        HighScore_UI.text = $"<b>High Score: </b>{saveManager.saveData.HighScore}";
+    }
+
+    // function name is obvious
+    public void SetGameState(GameStates newState)
+    {
+        currentState = newState;
+    }
+
+    // start a timer if the player is out of bounds
+    public void NoFlyZoneTimer()
+    {
+        if (warningRoutine == null)
+        {
+            warningRoutine = StartCoroutine(BlinkWarning());
+        }
+
+        currentTime = Mathf.Clamp(currentTime, 0f, maxTimeLimit);
+        currentTime += Time.deltaTime;
+
+        zoneTimer.fillAmount += 1f / maxTimeLimit * Time.deltaTime;
+
+        if (currentTime >= maxTimeLimit)
+        {
+            SetGameState(GameStates.GAMEOVER);
+        }
+    }
+
+    public void OnFlyZoneExit()
+    {
+        StartCoroutine(FlyZoneTimerDecrease());
+    }
+
+    public void PowerUpTimer()
+    {
+        StartCoroutine(puTimerDecrease);
+    }
+
+    private IEnumerator puTimerDecrease()
+    {
+        
+    }
+
+    // decrease the timer gradually if the player is out of bounds
+    private IEnumerator FlyZoneTimerDecrease()
+    {
+        while (!noFlyZone.isPlayerInside)
+        {
+            currentTime = Mathf.Clamp(currentTime, 0f, maxTimeLimit);
+            currentTime -= Time.deltaTime;
+
+            zoneTimer.fillAmount -= 1f / maxTimeLimit * Time.deltaTime;
+
+            if (currentTime <= 0f)
+            {
+                if (warningRoutine != null)
+                {
+                    StopCoroutine(warningRoutine);
+                    warningRoutine = null;
+                }
+
+                Warning_UI.gameObject.SetActive(false);
+                yield break;
+            }
+
+            yield return null;
+        }
+    }
+
+    // flashing warning text
+    private IEnumerator BlinkWarning()
+    {
+        while (currentTime > 0f)
+        {
+            Warning_UI.gameObject.SetActive(!Warning_UI.gameObject.activeSelf);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        Warning_UI.gameObject.SetActive(false);
+        warningRoutine = null;
+    }
+}
+>>>>>>> Stashed changes
