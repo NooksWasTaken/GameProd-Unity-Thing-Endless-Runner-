@@ -5,6 +5,7 @@ public class PlayerMove : MonoBehaviour
 {
     GameManager gameManager;
     public Rigidbody rb;
+    private MeshRenderer meshRenderer;
 
     [Header("Player Forces")]     // player control strength
     public float forwardForce;
@@ -15,20 +16,25 @@ public class PlayerMove : MonoBehaviour
     public float tiltAngle = 15f; // maximum tilt in degrees
     public float tiltSpeed = 5f;  // how fast the tilt interpolates
 
+    [Header("Speed Settings")]
+    public float maxForwardSpeed = 6000f; // maximum forward speed cap
+
     private bool isinvincible = false;
     private float originalSpeed;
+
+    [HideInInspector] public bool canMove = false;  // controlled by GameManager
+    [HideInInspector] public bool isBoosted = false; // is player currently speed boosted?
 
     private Coroutine speedCoroutine;
     private Coroutine invCoroutine;
 
     public Vector3 InitialPosition;
 
-    [HideInInspector] public bool canMove = false; // controlled by GameManager
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         gameManager = FindFirstObjectByType<GameManager>();
+        meshRenderer = this.gameObject.GetComponent<MeshRenderer>();
 
         InitialPosition = transform.position;
     }
@@ -39,6 +45,10 @@ public class PlayerMove : MonoBehaviour
 
         Movement();
         ApplyTilt();
+
+        // enforce max speed cap only if NOT boosted
+        if (!isBoosted)
+            forwardForce = Mathf.Min(forwardForce, maxForwardSpeed);
     }
 
     private void Movement()
@@ -97,7 +107,10 @@ public class PlayerMove : MonoBehaviour
             gameManager.Lives--;
 
             if (gameManager.Lives <= 0)
+            {
                 gameManager.SetGameState(GameStates.GAMEOVER);
+                meshRenderer.enabled = false;
+            }
         }
     }
 
@@ -137,12 +150,18 @@ public class PlayerMove : MonoBehaviour
 
         this.gameObject.tag = "Untagged";   // bandaid solution, currently stacking speed buffs makes the buffed speed its new permanent speed
                                             // so we just change the player tag so colliding with the power up doesnt trigger the buff
+
+        // mark boost active
+        isBoosted = true;
+
         originalSpeed = forwardForce;
-        forwardForce = originalSpeed * multiplier;
+        forwardForce = originalSpeed * multiplier; // ignore max speed cap temporarily
 
         yield return new WaitForSeconds(duration);
 
+        // reset to normal speed
         forwardForce = originalSpeed;
+        isBoosted = false;
         this.gameObject.tag = "Player";     // set it back to player tag
 
         Debug.Log("Speed boost OFF");

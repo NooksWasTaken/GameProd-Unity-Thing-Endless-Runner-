@@ -13,6 +13,7 @@ public class InvincibilityPowerUp : MonoBehaviour
             if (player != null)
             {
                 player.ActivateInvincibility(iFrames);
+                SoundManager.Play("PowerUp");
             }
 
             Destroy(gameObject);

@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     GameManager gameManager;
+    GameStates gameStates;
 
     [Header("Movement")]
     public float moveSpeed = 6f;

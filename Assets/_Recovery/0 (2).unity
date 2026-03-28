@@ -183,8 +183,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 0.96981126, g: 0.9247445, b: 0.74474186, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.9245283, g: 0.8725357, b: 0.7309007, a: 1}
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -227,8 +227,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 10647
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -1050,15 +1050,9 @@ MonoBehaviour:
     volume: 0.763
     pitch: 1.41
     loop: 0
-  - name: PowerUp
-    clip: {fileID: 8300000, guid: ff2a806044edc6345a9bb1fa44208fe9, type: 3}
-    category: 1
-    volume: 0.9
-    pitch: 1
-    loop: 0
   musicGroup: {fileID: 7052930317195294904, guid: 43ba231be1d5c6c47a121460f2b3e799, type: 2}
   sfxGroup: {fileID: 3754282191355647122, guid: 43ba231be1d5c6c47a121460f2b3e799, type: 2}
-  sfxPoolSize: 5
+  sfxPoolSize: 4
 --- !u!1 &557152087
 GameObject:
   m_ObjectHideFlags: 0
@@ -6324,6 +6318,7 @@ MonoBehaviour:
   - {fileID: 2666464377297749815, guid: 3eeff7605e0ff674f957d7cf17d4118e, type: 3}
   - {fileID: 3821701595860221197, guid: 1446cc206b72e7245b08eb72e5a48c34, type: 3}
   - {fileID: 5833782869253483877, guid: f4d9f609174ff0b4a93f11edb44b3660, type: 3}
+  - {fileID: 4564179301237730555, guid: eb3828c230f482f498e1c7cf2e5c78fd, type: 3}
   powerSpawnPoints:
   - {fileID: 1765161008}
   - {fileID: 1604572430}
@@ -6332,7 +6327,7 @@ MonoBehaviour:
   - {fileID: 4677393581289411131, guid: ab78bbef970383b48bd29caa76037c21, type: 3}
   - {fileID: 4677393581289411131, guid: b72ea7f203e2b08468034841ccff9570, type: 3}
   - {fileID: 4564179301237730555, guid: eb3828c230f482f498e1c7cf2e5c78fd, type: 3}
-  PowerupSpawnChance: 0.5
+  PowerupSpawnChance: 0.42
   spawnInterval: 4
   destroyDelay: 10
   baseSpawnInterval: 4
@@ -6750,8 +6745,8 @@ Transform:
   m_GameObject: {fileID: 1144973318}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3108, y: 41.9, z: -12.6}
-  m_LocalScale: {x: 28.651194, y: 69.84347, z: 33.661373}
+  m_LocalPosition: {x: 3.31082, y: 22.8, z: -12.6}
+  m_LocalScale: {x: 28.651194, y: 28.196367, z: 33.661373}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 557152088}
@@ -6769,7 +6764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFollow
   player: {fileID: 5180858930138692089}
-  offset: {x: 0, y: 15, z: 0}
+  offset: {x: 0, y: 20, z: 0}
 --- !u!114 &1144973324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12684,8 +12679,8 @@ Transform:
   m_GameObject: {fileID: 1568643744}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3108, y: -43.7, z: -12.6}
-  m_LocalScale: {x: 28.651194, y: 74.51385, z: 33.661373}
+  m_LocalPosition: {x: 3.31082, y: -27, z: -12.6}
+  m_LocalScale: {x: 28.651194, y: 37.757206, z: 33.661373}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 557152088}
@@ -14594,5 +14589,5 @@ SceneRoots:
   - {fileID: 198802316}
   - {fileID: 1927782864}
   - {fileID: 889195313}
-  - {fileID: 557152088}
   - {fileID: 1124182596}
+  - {fileID: 557152088}

@@ -21,30 +21,42 @@ public class PrefabSpawner : MonoBehaviour
     public float spawnInterval;             // time between spawns
     public float destroyDelay;              // lifetime of spawned objects
 
+    [Header("Dynamic Spawn Settings")]
+    [SerializeField] private float baseSpawnInterval = 5f; // base interval for scaling
+
     private GameManager gameManager;
     private float spawnTimer;
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 
     void Start()
     {
         gameManager = FindFirstObjectByType<GameManager>();
-        spawnTimer = spawnInterval;
+        spawnTimer = baseSpawnInterval;
         StartCoroutine(SpawnRoutine());
     }
-    
+
     IEnumerator SpawnRoutine()
     {
         while (true)
         {
-            // only spawn when the game is paused
+            // only spawn when the game is running
             if (gameManager.currentState == GameStates.RUNNING)
             {
+                // dynamically adjust interval based on forward speed
+                float speedFactor = gameManager.currentSpeed / 20000f; // subtle effect
+                float adjustedInterval = Mathf.Max(0.1f, baseSpawnInterval * (1f - speedFactor));
+
                 spawnTimer -= Time.deltaTime;
 
                 if (spawnTimer <= 0f)
                 {
                     SpawnBuildingPrefabs();
                     SpawnPowerupPrefabs();
-                    spawnTimer = spawnInterval;
+                    spawnTimer = adjustedInterval;
                 }
             }
 
@@ -52,44 +64,62 @@ public class PrefabSpawner : MonoBehaviour
         }
     }
 
-    // i was thinking of doing weighted spawns where we can select which building has priority in spawning but idk how
-    // currently when the game is paused, the spawn timer is completely reset so there is a brief period where nothing is spawning because
-    // the timer does not retain the original time before the game was paused
     void SpawnBuildingPrefabs()
     {
         foreach (Transform point in buildingSpawnPoints)
         {
-            // pick a random index in the array
             GameObject prefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
 
-            // instantiate based on randomly chosen array index
-            GameObject obj = Instantiate(prefab, point.position, point.rotation);
+            // spawn 5 units below
+            Vector3 spawnPos = point.position + Vector3.down * 40f;
 
-            // destroy after set duration
+            GameObject obj = Instantiate(prefab, spawnPos, point.rotation);
+
+            // start animation with slight random delay
+            StartCoroutine(AnimateSpawn(obj.transform, point.position));
+
             Destroy(obj, destroyDelay);
         }
+    }
+
+    private IEnumerator AnimateSpawn(Transform obj, Vector3 targetPos)
+    {
+        float delay = Random.Range(0f, 0.5f); // desync, no animation in unison
+        yield return new WaitForSeconds(delay);
+
+        float duration = 0.2f; // how fast it rises (lower = faster)
+        float time = 0f;
+
+        Vector3 startPos = obj.position;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = time / duration;
+
+            // smooth lerp (ease out)
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            obj.position = Vector3.Lerp(startPos, targetPos, t);
+
+            yield return null;
+        }
+
+        obj.position = targetPos; // snap to final just in case
     }
 
     void SpawnPowerupPrefabs()
     {
         Debug.Log("POWER SPAWN TEST");
         float chanceToSpawn = Random.value;
+        if (chanceToSpawn <= PowerupSpawnChance)
         {
-            if (chanceToSpawn <= PowerupSpawnChance)
+            foreach (Transform point in powerSpawnPoints)
             {
-                foreach (Transform point in powerSpawnPoints)
-                {
-                    // pick a random index in the array
-                    GameObject prefab = powerupPrefabs[Random.Range(0, powerupPrefabs.Length)];
-
-                    // instantiate based on randomly chosen array index
-                    GameObject obj = Instantiate(prefab, point.position, point.rotation);
-
-                    // destroy after set duration
-                    Destroy(obj, destroyDelay);
-                }
+                GameObject prefab = powerupPrefabs[Random.Range(0, powerupPrefabs.Length)];
+                GameObject obj = Instantiate(prefab, point.position, point.rotation);
+                Destroy(obj, destroyDelay);
             }
-            
         }
     }
 }

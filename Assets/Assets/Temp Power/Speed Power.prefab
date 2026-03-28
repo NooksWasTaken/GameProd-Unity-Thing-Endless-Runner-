@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7348239172866239922}
   - component: {fileID: 6153150216385590483}
   - component: {fileID: 6128685043416146301}
+  - component: {fileID: 2359941368031125532}
   m_Layer: 7
   m_Name: Speed Power
   m_TagString: Untagged
@@ -127,3 +128,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedPowerUp
   speedMultiplier: 1.5
   duration: 3
+--- !u!114 &2359941368031125532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677393581289411131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb34d9533d212042b846424a5234063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VerticalMovelLoop
+  amplitude: 5
+  speed: 5

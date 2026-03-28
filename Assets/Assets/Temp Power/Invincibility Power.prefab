@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7348239172866239922}
   - component: {fileID: 6153150216385590483}
   - component: {fileID: -2541281833880826982}
+  - component: {fileID: 6530482199288489187}
   m_Layer: 7
   m_Name: Invincibility Power
   m_TagString: Untagged
@@ -126,3 +127,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InvincibilityPowerUp
   iFrames: 4
+--- !u!114 &6530482199288489187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677393581289411131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb34d9533d212042b846424a5234063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VerticalMovelLoop
+  amplitude: 5
+  speed: 5

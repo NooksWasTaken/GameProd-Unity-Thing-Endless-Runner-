@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 using GameAnalyticsSDK;
 
 public class GameManager : MonoBehaviour
@@ -14,10 +13,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerMove player;
     [SerializeField] private NoFlyZoneArea noFlyZone;
 
+    [Header("Player Components")]
+    public Transform playerTransform;
+    public MeshRenderer playerRenderer;
+
     [Header("Out of Bounds Settings")]
     public float currentTime;
     public float maxTimeLimit;
-    
+
     [Header("Difficulty Scaling Settings")]
     public int timeToScale;                                 // this value needs to be carefully adjusted, this is a linear scale and idk if we want exponential
     public int initialSpeed;
@@ -34,6 +37,9 @@ public class GameManager : MonoBehaviour
     public int Lives;                                       // Current player lives
     public GameStates currentState = GameStates.PAUSED;
 
+    [Header("Particles")]
+    public GameObject explosion;
+
     [Header("UI")]
     [SerializeField] private Button StartBtn;
     [SerializeField] private Button RestartBtn;
@@ -46,27 +52,32 @@ public class GameManager : MonoBehaviour
 
     private Coroutine scalingRoutine;
     private Coroutine warningRoutine;
+    private bool exploded = false;
 
     void Start()
     {
-        // get references
+        // get script references
         saveManager = FindFirstObjectByType<SaveManager>();
         prefabSpawner = FindFirstObjectByType<PrefabSpawner>();
         player = FindFirstObjectByType<PlayerMove>();
         noFlyZone = FindFirstObjectByType<NoFlyZoneArea>();
 
+        // player component references
+        playerTransform = GameObject.FindWithTag("Player").transform;
+        playerRenderer = GameObject.FindWithTag("Player").GetComponent<MeshRenderer>();
+
         zoneTimer.fillAmount = 0f;
-        //Warning_UI.gameObject.SetActive(false);
         RestartBtn.gameObject.SetActive(false);
 
         UpdateUI();
         SetGameState(GameStates.PAUSED);
+        SoundManager.PlayLoop("StartMusic");
     }
 
     void Update()
     {
         currentSpeed = player.forwardForce;
-        CurrentSpeed_UI.text = $"<b>Current Speed: </b>{currentSpeed}";
+        CurrentSpeed_UI.text = $"<b>Current Speed: </b>{(currentSpeed / 100f):F0} km/h";
 
         HandleGameState();
     }
@@ -77,7 +88,9 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameStates.RUNNING:
+                exploded = false;
                 player.canMove = true;
+                playerRenderer.enabled = true;
 
                 if (StartBtn.gameObject.activeSelf) StartBtn.gameObject.SetActive(false);
                 if (RestartBtn.gameObject.activeSelf) RestartBtn.gameObject.SetActive(false);
@@ -103,7 +116,17 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameStates.GAMEOVER:
+
+                if (!exploded)
+                {
+                    exploded = true;
+                    Instantiate(explosion, playerTransform.position, Quaternion.identity);
+                    playerRenderer.enabled = false;
+                    SoundManager.Play("Plane_Crash");
+                }
+
                 player.canMove = false;
+                prefabSpawner.enabled = false;
 
                 if (!RestartBtn.gameObject.activeSelf) RestartBtn.gameObject.SetActive(true);
 
@@ -112,7 +135,7 @@ public class GameManager : MonoBehaviour
                     saveManager.saveData.HighScore = highScore;
                     saveManager.Save();
                 }
-         
+
                 break;
         }
     }
@@ -122,8 +145,8 @@ public class GameManager : MonoBehaviour
     {
         highScore = Mathf.Max(currentScore, saveManager.saveData.HighScore);
 
-        CurrentScore_UI.text = $"<b>Score: </b>{currentScore}";
-        HighScore_UI.text = $"<b>High Score: </b>{highScore}";
+        CurrentScore_UI.text = $"<b>Score: </b>{currentScore/10}:";
+        HighScore_UI.text = $"<b>High Score: </b>{highScore/10}:";
 
         currentScore++;
     }
@@ -139,9 +162,12 @@ public class GameManager : MonoBehaviour
         // removes any momentum stored
         player.rb.linearVelocity = Vector3.zero;
         player.rb.angularVelocity = Vector3.zero;
-        player.forwardForce = initialSpeed;
+
+        // cap initial speed
+        player.forwardForce = Mathf.Min(initialSpeed, 6000);
 
         SetGameState(GameStates.RUNNING);
+        SoundManager.PlayLoop("FlyingMusic");
     }
 
     // restart game by reloading scene to fully refresh everything
@@ -157,14 +183,18 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(timeToScale);
             player.forwardForce += speedIncrease;
+
+            // cap only if not boosted
+            if (!player.isBoosted && player.forwardForce > player.maxForwardSpeed)
+                player.forwardForce = player.maxForwardSpeed;
         }
     }
 
     // function name says it all
     private void UpdateUI()
     {
-        CurrentScore_UI.text = $"<b>Score: </b>{currentScore}";
-        HighScore_UI.text = $"<b>High Score: </b>{saveManager.saveData.HighScore}";
+        CurrentScore_UI.text = $"<b>Score: </b>{currentScore / 10}:";
+        HighScore_UI.text = $"<b>High Score: </b>{saveManager.saveData.HighScore / 10}";
     }
 
     // function name is obvious

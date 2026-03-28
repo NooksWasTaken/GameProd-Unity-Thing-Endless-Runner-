@@ -14,6 +14,7 @@ public class SpeedPowerUp : MonoBehaviour
             if (player != null)
             {
                 player.ActivateSpeedBoost(speedMultiplier, duration);
+                SoundManager.Play("PowerUp");
             }
 
             Destroy(gameObject);

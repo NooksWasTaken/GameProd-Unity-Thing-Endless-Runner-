@@ -12,6 +12,14 @@ public class NoFlyZoneArea : MonoBehaviour
         isPlayerInside = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            SoundManager.Play("Warning");
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
