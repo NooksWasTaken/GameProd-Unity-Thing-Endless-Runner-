@@ -20,11 +20,18 @@ public class GameManager : MonoBehaviour
     int CurrentScore;       
 
     [Header("Gameplay")]
+<<<<<<< Updated upstream
     float TimeElapsed;          // Adding this just in case it's needed
     public float LevelSpeed;    // Movement/Scroll speed of the level; increments every 60s
     [Space]
     public int Lives;           // Initial player life count
     internal bool IsInGame;
+=======
+    public int initialLives = 1;                            // Initial player life count
+    public int Lives;                                       // Current player lives
+    public float restartButtonDelay = 2f;
+    public GameStates currentState = GameStates.PAUSED;
+>>>>>>> Stashed changes
 
     [Header("Gameplay")]
     [SerializeField] private Button StartBtn;
@@ -36,6 +43,8 @@ public class GameManager : MonoBehaviour
     [Space]
     [SerializeField] private Image zoneTimer;
     [SerializeField] private TextMeshProUGUI Warning_UI;
+    [SerializeField] private Slider SliderIPU;
+    [SerializeField] private Slider SliderSPU;
 
     [Header("Sliders")]
     [SerializeField] private Slider sliderIPU;
@@ -49,6 +58,9 @@ public class GameManager : MonoBehaviour
     private Coroutine scalingRoutine;
     private Coroutine warningRoutine;
 >>>>>>> Stashed changes
+
+    private Coroutine invSliderRoutine;
+    private Coroutine speedSliderRoutine;
 
     void Start()
     {
@@ -82,8 +94,16 @@ public class GameManager : MonoBehaviour
 
         if (IsInGame)
         {
+<<<<<<< Updated upstream
             sectionSpawner.enabled = true;
             player.enabled = true;
+=======
+            case GameStates.RUNNING:
+                exploded = false;
+                player.canMove = true;
+                playerRenderer.enabled = true;
+                player.gameObject.SetActive(true);
+>>>>>>> Stashed changes
 
             if (StartBtn.gameObject.activeSelf) StartBtn.gameObject.SetActive(false);
 
@@ -94,7 +114,53 @@ public class GameManager : MonoBehaviour
             sectionSpawner.enabled = false;
             player.enabled = false;
 
+<<<<<<< Updated upstream
             if (!StartBtn.gameObject.activeSelf) StartBtn.gameObject.SetActive(true);
+=======
+                // only start scaling once
+                if (scalingRoutine == null)
+                    scalingRoutine = StartCoroutine(SpeedScalingDifficulty());
+
+                break;
+
+            case GameStates.PAUSED:
+                player.canMove = false;
+
+                if (!StartBtn.gameObject.activeSelf) StartBtn.gameObject.SetActive(true);
+                if (scalingRoutine != null)
+                {
+                    StopCoroutine(scalingRoutine);
+                    scalingRoutine = null;
+                }
+
+                break;
+
+            case GameStates.GAMEOVER:
+
+                if (!exploded)
+                {
+                    exploded = true;
+                    Instantiate(explosion, playerTransform.position, Quaternion.identity);
+                    //playerRenderer.enabled = false;
+                    player.gameObject.SetActive(false);
+                    SoundManager.Play("Plane_Crash");
+
+                    StartCoroutine(ShowRestartButtonDelayed());
+                }
+
+                player.canMove = false;
+                prefabSpawner.enabled = false;
+                //Commented out messes with coroutine
+                //if (!RestartBtn.gameObject.activeSelf) RestartBtn.gameObject.SetActive(true);
+                
+                if (highScore > saveManager.saveData.HighScore)
+                {
+                    saveManager.saveData.HighScore = highScore;
+                    saveManager.Save();
+                }
+
+                break;
+>>>>>>> Stashed changes
         }
     }
 
@@ -168,6 +234,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartPowerUpUI(string type, float duration)
+    {
+        if (type == "Invincibility")
+        {
+            if (invSliderRoutine != null) StopCoroutine(invSliderRoutine);
+            invSliderRoutine = StartCoroutine(PowerUpTimer(SliderIPU, duration));
+        }
+        else if (type == "Speed")
+        {
+            if (speedSliderRoutine != null) StopCoroutine(speedSliderRoutine);
+            speedSliderRoutine = StartCoroutine(PowerUpTimer(SliderSPU, duration));
+        }
+    }
+
+    private IEnumerator PowerUpTimer(Slider slider, float duration)
+    {
+        slider.gameObject.SetActive(true);
+        slider.maxValue = duration;
+        float timer = duration;
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            slider.value = timer;
+            yield return null;
+        }
+
+        slider.gameObject.SetActive(false);
+    }
+
     public void OnFlyZoneExit()
     {
         StartCoroutine(FlyZoneTimerDecrease());
@@ -220,6 +316,22 @@ public class GameManager : MonoBehaviour
 
         Warning_UI.gameObject.SetActive(false);
         warningRoutine = null;
+    }
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
+
+    private IEnumerator ShowRestartButtonDelayed()
+    {
+        // Wait for the specified amount of seconds
+        yield return new WaitForSeconds(restartButtonDelay);
+
+        // Show the button
+        if (RestartBtn != null)
+        {
+            RestartBtn.gameObject.SetActive(true);
+        }
     }
 }
 >>>>>>> Stashed changes

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine invCoroutine;
 
     internal Vector3 InitialPosition;
+
+    [Header("UI Sliders")]
+    public Slider invincibilitySlider;
+    public Slider speedSlider;
 
     void Start()
     {
