@@ -115,6 +115,7 @@ public class PlayerMove : MonoBehaviour
 
             if (gameManager.Lives <= 0)
             {
+                SoundManager.Stop("Speed");
                 gameManager.SetGameState(GameStates.GAMEOVER);
                 meshRenderer.enabled = false;
             }

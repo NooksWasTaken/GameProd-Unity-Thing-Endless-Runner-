@@ -1430,9 +1430,27 @@ MonoBehaviour:
     volume: 0.9
     pitch: 1
     loop: 0
+  - name: Click
+    clip: {fileID: 8300000, guid: 71a29a6d94d100b4086293a526ab4c6b, type: 3}
+    category: 1
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Immunity
+    clip: {fileID: 8300000, guid: 51c0e65e887d75a4c9ae66ff4e961ab9, type: 3}
+    category: 1
+    volume: 0.9
+    pitch: 1
+    loop: 0
+  - name: Speed
+    clip: {fileID: 8300000, guid: d075f6d10523f954e8742ffa7d838e43, type: 3}
+    category: 1
+    volume: 0.58
+    pitch: 1
+    loop: 0
   musicGroup: {fileID: 7052930317195294904, guid: 43ba231be1d5c6c47a121460f2b3e799, type: 2}
   sfxGroup: {fileID: 3754282191355647122, guid: 43ba231be1d5c6c47a121460f2b3e799, type: 2}
-  sfxPoolSize: 5
+  sfxPoolSize: 8
 --- !u!1 &557152087
 GameObject:
   m_ObjectHideFlags: 0

@@ -129,7 +129,6 @@ public class GameManager : MonoBehaviour
                 {
                     exploded = true;
                     Instantiate(explosion, playerTransform.position, Quaternion.identity);
-                    //playerRenderer.enabled = false;
                     player.gameObject.SetActive(false);
                     SoundManager.Play("Plane_Crash");
 
@@ -165,6 +164,7 @@ public class GameManager : MonoBehaviour
     // start game with initial settings
     public void StartGame()
     {
+        SoundManager.Play("Click");
         currentScore = 0;
         Lives = initialLives;
         player.transform.position = player.InitialPosition;
@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
     // restart game by reloading scene to fully refresh everything
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(RestartRoutine());
     }
 
     // difficulty scaling over time
@@ -238,11 +238,13 @@ public class GameManager : MonoBehaviour
         if (type == "Invincibility")
         {
             if (invSliderRoutine != null) StopCoroutine(invSliderRoutine);
+            SoundManager.Play("Immunity");
             invSliderRoutine = StartCoroutine(PowerUpTimer(SliderIPU, duration));
         }
         else if (type == "Speed")
         {
             if (speedSliderRoutine != null) StopCoroutine(speedSliderRoutine);
+            SoundManager.Play("Speed");
             speedSliderRoutine = StartCoroutine(PowerUpTimer(SliderSPU, duration));
         }
     }
@@ -257,6 +259,13 @@ public class GameManager : MonoBehaviour
         {
             RestartBtn.gameObject.SetActive(true);
         }
+    }
+
+    private IEnumerator RestartRoutine()
+    {
+        SoundManager.Play("Click");
+        yield return new WaitForSecondsRealtime(0.2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator PowerUpTimer(Slider slider, float duration)
