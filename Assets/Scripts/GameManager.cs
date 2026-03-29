@@ -129,8 +129,8 @@ public class GameManager : MonoBehaviour
                 {
                     exploded = true;
                     Instantiate(explosion, playerTransform.position, Quaternion.identity);
-                    //playerRenderer.enabled = false;//messes with coroutine
-                    player.gameObject.SetActive(true);
+                    //playerRenderer.enabled = false;
+                    player.gameObject.SetActive(false);
                     SoundManager.Play("Plane_Crash");
 
                     StartCoroutine(ShowRestartButtonDelayed());
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
                 player.canMove = false;
                 prefabSpawner.enabled = false;
 
-                if (!RestartBtn.gameObject.activeSelf) RestartBtn.gameObject.SetActive(true);
+                //if (!RestartBtn.gameObject.activeSelf) RestartBtn.gameObject.SetActive(true); //messes with restart delay
 
                 if (highScore > saveManager.saveData.HighScore)
                 {
