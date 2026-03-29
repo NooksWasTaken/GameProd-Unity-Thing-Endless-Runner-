@@ -30,11 +30,18 @@ public class PlayerMove : MonoBehaviour
 
     public Vector3 InitialPosition;
 
+    [Header("VFX")]
+    [SerializeField] GameObject speedVFX;
+    [SerializeField] GameObject inviVFX;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         gameManager = FindFirstObjectByType<GameManager>();
         meshRenderer = this.gameObject.GetComponent<MeshRenderer>();
+
+        speedVFX.gameObject.SetActive(false);
+        inviVFX.gameObject.SetActive(false);
 
         InitialPosition = transform.position;
     }
@@ -133,14 +140,16 @@ public class PlayerMove : MonoBehaviour
     IEnumerator InvincibilityRoutine(float duration)
     {
         Debug.Log("Invincibility ON");
+        inviVFX.gameObject.SetActive(true);
         isinvincible = true;
         this.gameObject.layer = 8;      // set to "immune" layer
+        gameManager.StartPowerUpUI("Invincibility", duration);
         Debug.Log("LOG TEXT 1");
 
         yield return new WaitForSeconds(duration);
         isinvincible = false;
         this.gameObject.layer = 3;      // set back to player layer
-
+        inviVFX.gameObject.SetActive(false);
         Debug.Log("Invincibility OFF");
     }
 
@@ -149,8 +158,8 @@ public class PlayerMove : MonoBehaviour
         Debug.Log("Speed boost ON");
 
         this.gameObject.tag = "Untagged";   // bandaid solution, currently stacking speed buffs makes the buffed speed its new permanent speed
-                                            // so we just change the player tag so colliding with the power up doesnt trigger the buff
-
+        gameManager.StartPowerUpUI("Speed", duration);                                    // so we just change the player tag so colliding with the power up doesnt trigger the buff
+        speedVFX.SetActive(true);
         // mark boost active
         isBoosted = true;
 
@@ -163,7 +172,7 @@ public class PlayerMove : MonoBehaviour
         forwardForce = originalSpeed;
         isBoosted = false;
         this.gameObject.tag = "Player";     // set it back to player tag
-
+        speedVFX.SetActive(false);
         Debug.Log("Speed boost OFF");
     }
 }

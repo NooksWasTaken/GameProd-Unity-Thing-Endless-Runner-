@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay")]
     public int initialLives = 1;                            // Initial player life count
     public int Lives;                                       // Current player lives
+    public float restartButtonDelay = 1.5f;
     public GameStates currentState = GameStates.PAUSED;
 
     [Header("Particles")]
@@ -49,12 +50,18 @@ public class GameManager : MonoBehaviour
     [Space]
     [SerializeField] private Image zoneTimer;
     [SerializeField] private TextMeshProUGUI Warning_UI;
+    [SerializeField] private Slider SliderIPU;
+    [SerializeField] private Slider SliderSPU;
 
     private Coroutine scalingRoutine;
     private Coroutine warningRoutine;
     private bool exploded = false;
 
+    private Coroutine invSliderRoutine;
+    private Coroutine speedSliderRoutine;
+
     void Start()
+
     {
         // get script references
         saveManager = FindFirstObjectByType<SaveManager>();
@@ -91,6 +98,7 @@ public class GameManager : MonoBehaviour
                 exploded = false;
                 player.canMove = true;
                 playerRenderer.enabled = true;
+                player.gameObject.SetActive(true);
 
                 if (StartBtn.gameObject.activeSelf) StartBtn.gameObject.SetActive(false);
                 if (RestartBtn.gameObject.activeSelf) RestartBtn.gameObject.SetActive(false);
@@ -121,8 +129,11 @@ public class GameManager : MonoBehaviour
                 {
                     exploded = true;
                     Instantiate(explosion, playerTransform.position, Quaternion.identity);
-                    playerRenderer.enabled = false;
+                    //playerRenderer.enabled = false;//messes with coroutine
+                    player.gameObject.SetActive(true);
                     SoundManager.Play("Plane_Crash");
+
+                    StartCoroutine(ShowRestartButtonDelayed());
                 }
 
                 player.canMove = false;
@@ -220,6 +231,47 @@ public class GameManager : MonoBehaviour
         {
             SetGameState(GameStates.GAMEOVER);
         }
+    }
+
+    public void StartPowerUpUI(string type, float duration)
+    {
+        if (type == "Invincibility")
+        {
+            if (invSliderRoutine != null) StopCoroutine(invSliderRoutine);
+            invSliderRoutine = StartCoroutine(PowerUpTimer(SliderIPU, duration));
+        }
+        else if (type == "Speed")
+        {
+            if (speedSliderRoutine != null) StopCoroutine(speedSliderRoutine);
+            speedSliderRoutine = StartCoroutine(PowerUpTimer(SliderSPU, duration));
+        }
+    }
+
+    private IEnumerator ShowRestartButtonDelayed()
+    {
+        //Wait for the specified amount of seconds
+        yield return new WaitForSeconds(restartButtonDelay);
+
+        //Show the button
+        if (RestartBtn != null)
+        {
+            RestartBtn.gameObject.SetActive(true);
+        }
+    }
+
+    private IEnumerator PowerUpTimer(Slider slider, float duration)
+    {
+        slider.gameObject.SetActive(true);
+        slider.maxValue = duration;
+        float timer = duration;
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            slider.value = timer;
+            yield return null;
+        }
+        slider.gameObject.SetActive(false);
     }
 
     public void OnFlyZoneExit()
