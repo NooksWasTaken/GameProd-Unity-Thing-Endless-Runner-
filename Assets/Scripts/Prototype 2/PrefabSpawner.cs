@@ -117,6 +117,8 @@ public class PrefabSpawner : MonoBehaviour
             foreach (Transform point in powerSpawnPoints)
             {
                 GameObject prefab = powerupPrefabs[Random.Range(0, powerupPrefabs.Length)];
+
+                Debug.Log($"Prefab Rotation: {prefab.transform.rotation}");
                 GameObject obj = Instantiate(prefab, point.position, point.rotation);
                 Destroy(obj, destroyDelay);
             }

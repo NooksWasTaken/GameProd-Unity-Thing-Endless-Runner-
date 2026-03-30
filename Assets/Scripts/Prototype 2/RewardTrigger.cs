@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 
 public class RewardTrigger : MonoBehaviour
 {
@@ -12,9 +14,19 @@ public class RewardTrigger : MonoBehaviour
 
     Vector3 InitPos;
 
+    TextMeshProUGUI Points_UI;
 
     void Start()
     {
+        Points_UI = GameObject.Find("Bonus Point Text").GetComponent<TextMeshProUGUI>();
+
+        // Fixes rotation
+        transform.rotation = Quaternion.Euler(90, 0, 0);
+
+        // Randomizes elevation
+        int randElevation = Random.Range(-5, 6);
+        transform.position += new Vector3(0, randElevation, 0);
+
         gameManager = FindObjectOfType<GameManager>();
         InitPos = transform.position;
         RandomMovementPath = Random.Range(0, 3);
@@ -49,14 +61,20 @@ public class RewardTrigger : MonoBehaviour
 
             Debug.Log($"+{AdditionalPoints} BONUS!");
             SoundManager.Play("PowerUp");
+
+            Color color = Points_UI.color;
+            Points_UI.color = new Color(color.r, color.g, color.b, 1);
+
+            StartCoroutine("HideMessage");
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator HideMessage()
     {
-        if (other.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
+        yield return new WaitForSeconds(2);
+
+        Color color = Points_UI.color;
+        Points_UI.color = new Color(color.r, color.g, color.b, 0);
+        Destroy(gameObject);
     }
 }
