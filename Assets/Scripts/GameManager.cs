@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Scoring")]
     private int highScore;                                  // high score now preserved via save manager yipeeeeee
-    private int currentScore;                               // track current score during run time
+    internal int currentScore;                               // track current score during run time
 
     [Header("Gameplay")]
     public int initialLives = 1;                            // Initial player life count
@@ -155,8 +155,8 @@ public class GameManager : MonoBehaviour
     {
         highScore = Mathf.Max(currentScore, saveManager.saveData.HighScore);
 
-        CurrentScore_UI.text = $"<b>Score: </b>{currentScore/10}:";
-        HighScore_UI.text = $"<b>High Score: </b>{highScore/10}:";
+        CurrentScore_UI.text = $"<b>Score: </b>{currentScore/10}";
+        HighScore_UI.text = $"<b>High Score: </b>{highScore/10}";
 
         currentScore++;
     }
@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
     // function name says it all
     private void UpdateUI()
     {
-        CurrentScore_UI.text = $"<b>Score: </b>{currentScore / 10}:";
+        CurrentScore_UI.text = $"<b>Score: </b>{currentScore / 10}";
         HighScore_UI.text = $"<b>High Score: </b>{saveManager.saveData.HighScore / 10}";
     }
 

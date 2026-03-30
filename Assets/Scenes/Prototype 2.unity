@@ -6960,22 +6960,23 @@ MonoBehaviour:
   - {fileID: 1478153260}
   - {fileID: 777949954}
   buildingPrefabs:
-  - {fileID: 1904176644111098076, guid: c655357067f696848bd72754d2b1372f, type: 3}
-  - {fileID: 3085252045196004858, guid: b21f13be760648541ba749e14c022442, type: 3}
-  - {fileID: 1578347814816229025, guid: 9cd640c6432fd0d46b5813ca926ecde0, type: 3}
-  - {fileID: 5845545774608393254, guid: f9df21c8619e87d499234f9d5076a430, type: 3}
-  - {fileID: 7114355794368209296, guid: 81d98c22bea2b004ea0f2a3e16ad0382, type: 3}
-  - {fileID: 8341171687442047571, guid: 9e8d43a61b8c5314c8301004600d1210, type: 3}
-  - {fileID: 2666464377297749815, guid: 3eeff7605e0ff674f957d7cf17d4118e, type: 3}
-  - {fileID: 3821701595860221197, guid: 1446cc206b72e7245b08eb72e5a48c34, type: 3}
-  - {fileID: 5833782869253483877, guid: f4d9f609174ff0b4a93f11edb44b3660, type: 3}
+  - {fileID: 4447814144134781881, guid: fef124c5b852c684ba4240b73c7cc819, type: 3}
+  - {fileID: 4289137303383239061, guid: acb1ac006436c6848888bc7bcb444ec3, type: 3}
+  - {fileID: 2900464162123990699, guid: 70d5d68dd2310ea4aa5357564de75e3d, type: 3}
+  - {fileID: 2983366443174298460, guid: 5629ec426e623294e882dffd556ff733, type: 3}
+  - {fileID: 1417414758204216683, guid: fcbb4e25e38acc946917f599cab7ca53, type: 3}
+  - {fileID: 4880962465490023107, guid: c9633afd49f7cb3448218a8af8141869, type: 3}
+  - {fileID: 5521220982751308305, guid: d76cd989218ed004db4c10ba58a8c608, type: 3}
+  - {fileID: 512005318760576777, guid: 85f593cc5108be14390c5089a892c77b, type: 3}
+  - {fileID: 6537888913847944617, guid: d7035f1eb94a00e4ca2312006b99ad88, type: 3}
   powerSpawnPoints:
   - {fileID: 1765161008}
   - {fileID: 1604572430}
   - {fileID: 1996653770}
   powerupPrefabs:
-  - {fileID: 4430638608212410326, guid: 646a10724e2be3e4cacc16729b0718aa, type: 3}
-  - {fileID: 4960993409059354193, guid: 3ef62c60875609d4f88a0713ff74c3fa, type: 3}
+  - {fileID: 4677393581289411131, guid: b72ea7f203e2b08468034841ccff9570, type: 3}
+  - {fileID: 4677393581289411131, guid: ab78bbef970383b48bd29caa76037c21, type: 3}
+  - {fileID: 4306188852199069138, guid: 00d7f4cee25c2a545af2784aa931f20e, type: 3}
   - {fileID: 4564179301237730555, guid: eb3828c230f482f498e1c7cf2e5c78fd, type: 3}
   PowerupSpawnChance: 0.5
   spawnInterval: 4
@@ -13704,13 +13705,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604572429}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.5, y: 3.3, z: 49.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 959816315}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!23 &1604572431
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14047,13 +14048,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765161007}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -34.9, y: 3.3000002, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 959816315}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!23 &1765161009
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14768,13 +14769,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996653769}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 39.6, y: 3.3000002, z: 49.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 959816315}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!23 &1996653771
 MeshRenderer:
   m_ObjectHideFlags: 0
