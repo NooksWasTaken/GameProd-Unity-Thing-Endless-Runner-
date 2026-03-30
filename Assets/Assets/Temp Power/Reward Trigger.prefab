@@ -8857,6 +8857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ece67b78e73af49bb99c9fe65bb9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RewardTrigger
-  AdditionalPoints: 100
+  AdditionalPoints: 200
   MovementDist: 5
   Speed: 10
