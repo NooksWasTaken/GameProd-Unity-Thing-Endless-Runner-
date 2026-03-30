@@ -127,32 +127,6 @@ public class SoundManager : MonoBehaviour
         source.Play();
     }
 
-    public static void Stop(string name)
-    {
-        if (!instance.soundData.ContainsKey(name)) return;
-
-        Sound s = instance.soundData[name];
-
-        if (s.category == SoundCategory.Music)
-        {
-            instance.musicSource.Stop();
-        }
-        else
-        {
-            instance.StopSFX(s);
-        }
-    }
-    private void StopSFX(Sound s)
-    {
-        foreach (AudioSource source in sfxSources)
-        {
-            if (source.isPlaying && source.clip == s.clip)
-            {
-                source.Stop();
-            }
-        }
-    }
-
     private IEnumerator FadeInRoutine(string name, float duration)
     {
         Sound s = soundData[name];
