@@ -25,11 +25,13 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ALPHATEST_ON
   - _FADING_ON
+  - _FLIPBOOKBLENDING_ON
+  - _RECEIVE_SHADOWS_OFF
   - _SOFTPARTICLES_ON
   - _SURFACE_TYPE_TRANSPARENT
-  m_InvalidKeywords:
-  - _FLIPBOOKBLENDING_OFF
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -102,7 +104,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -125,7 +127,7 @@ Material:
     - _DstBlend: 10
     - _DstBlendAlpha: 10
     - _EnvironmentReflections: 1
-    - _FlipbookBlending: 0
+    - _FlipbookBlending: 1
     - _FlipbookMode: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -136,13 +138,13 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
+    - _ReceiveShadows: 0
     - _Shininess: 0
     - _Smoothness: 0.5
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 1
-    - _SoftParticlesFarFadeDistance: 12.33
+    - _SoftParticlesFarFadeDistance: 16.98
     - _SoftParticlesNearFadeDistance: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
@@ -153,12 +155,12 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.5223567, g: 0.73814, b: 0.82641506, a: 0.49019608}
+    - _BaseColor: {r: 0.65389097, g: 0.9140454, b: 0.9547169, a: 0.5921569}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 0.5223567, g: 0.73814, b: 0.82641506, a: 0.49019608}
+    - _Color: {r: 0.6538909, g: 0.9140454, b: 0.95471686, a: 0.5921569}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SoftParticleFadeParams: {r: 0, g: 0.081103005, b: 0, a: 0}
+    - _SoftParticleFadeParams: {r: 0, g: 0.058892816, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

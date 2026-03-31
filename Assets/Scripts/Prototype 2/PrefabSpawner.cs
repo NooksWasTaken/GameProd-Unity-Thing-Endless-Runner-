@@ -71,7 +71,7 @@ public class PrefabSpawner : MonoBehaviour
             GameObject prefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
 
             // spawn 5 units below
-            Vector3 spawnPos = point.position + Vector3.down * 40f;
+            Vector3 spawnPos = point.position + Vector3.down * 80f;
 
             GameObject obj = Instantiate(prefab, spawnPos, point.rotation);
 

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1.15
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 50bf15468c19e0e40b5bf26662770a34, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -6396,7 +6396,7 @@ Transform:
   m_GameObject: {fileID: 746305701}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 25.399551, y: -4.8399982, z: 138.46927}
+  m_LocalPosition: {x: 25.399551, y: 0.9, z: 138.46927}
   m_LocalScale: {x: 1.6611221, y: 1.6611226, z: 1.6611226}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6415,7 +6415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFollow
   player: {fileID: 5180858930138692089}
-  offset: {x: 0, y: 0, z: 40}
+  offset: {x: 0, y: 10, z: 40}
 --- !u!1 &777949953
 GameObject:
   m_ObjectHideFlags: 0
@@ -6985,9 +6985,9 @@ MonoBehaviour:
   - {fileID: 4306188852199069138, guid: 00d7f4cee25c2a545af2784aa931f20e, type: 3}
   - {fileID: 4564179301237730555, guid: eb3828c230f482f498e1c7cf2e5c78fd, type: 3}
   PowerupSpawnChance: 0.5
-  spawnInterval: 5
+  spawnInterval: 4
   destroyDelay: 10
-  baseSpawnInterval: 5
+  baseSpawnInterval: 4
 --- !u!1 &995391899
 GameObject:
   m_ObjectHideFlags: 0
