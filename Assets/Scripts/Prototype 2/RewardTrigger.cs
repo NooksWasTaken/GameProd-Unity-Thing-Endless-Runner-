@@ -18,6 +18,7 @@ public class RewardTrigger : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         InitPos = transform.position;
         RandomMovementPath = Random.Range(0, 3);
+        transform.rotation = Quaternion.Euler(90, 0, 0);
     }
 
     void Update()
@@ -48,7 +49,7 @@ public class RewardTrigger : MonoBehaviour
             gameManager.currentScore += AdditionalPoints * 10;
 
             Debug.Log($"+{AdditionalPoints} BONUS!");
-            SoundManager.Play("PowerUp");
+            SoundManager.Play("Reward");
         }
     }
 
