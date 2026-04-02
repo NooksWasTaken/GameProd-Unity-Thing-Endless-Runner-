@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button RestartBtn;
     [SerializeField] private TextMeshProUGUI CurrentScore_UI;
     [SerializeField] private TextMeshProUGUI HighScore_UI;
+    [SerializeField] private GameObject NewRecord_UI;
+    [SerializeField] internal GameObject Bonus_UI;
     [SerializeField] private TextMeshProUGUI CurrentSpeed_UI;
     [Space]
     [SerializeField] private Image zoneTimer;
@@ -140,9 +142,9 @@ public class GameManager : MonoBehaviour
 
                 //if (!RestartBtn.gameObject.activeSelf) RestartBtn.gameObject.SetActive(true); //messes with restart delay
 
-                if (highScore > saveManager.saveData.HighScore)
+                if (highScore > saveManager.saveData.HighScore * 10)
                 {
-                    saveManager.saveData.HighScore = highScore;
+                    saveManager.saveData.HighScore = highScore / 10;
                     saveManager.Save();
                 }
 
@@ -153,12 +155,16 @@ public class GameManager : MonoBehaviour
     // score tracker
     private void ScoreCounter()
     {
-        highScore = Mathf.Max(currentScore, saveManager.saveData.HighScore);
+        highScore = Mathf.Max(currentScore, saveManager.saveData.HighScore * 10);
+        // shows message when new high score is set
+        if (currentScore > saveManager.saveData.HighScore * 10 && !NewRecord_UI.gameObject.activeSelf) NewRecord_UI.gameObject.SetActive(true);
 
         CurrentScore_UI.text = $"<b>Score: </b>{currentScore/10}";
         HighScore_UI.text = $"<b>High Score: </b>{highScore/10}";
 
-        currentScore++;
+        // Added a thing that doubles the points earned if the player is sped up
+        int ScoreMultiplier = player.isBoosted ? 2 : 1;
+        currentScore += ScoreMultiplier;
     }
 
     // start game with initial settings
@@ -168,7 +174,7 @@ public class GameManager : MonoBehaviour
         currentScore = 0;
         Lives = initialLives;
         player.transform.position = player.InitialPosition;
-        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "Run");
+        GameAnalyticsManager.instance.FunnelFinished(1, "Game_Started");
 
         // removes any momentum stored
         player.rb.linearVelocity = Vector3.zero;
@@ -205,7 +211,7 @@ public class GameManager : MonoBehaviour
     private void UpdateUI()
     {
         CurrentScore_UI.text = $"<b>Score: </b>{currentScore / 10}";
-        HighScore_UI.text = $"<b>High Score: </b>{saveManager.saveData.HighScore / 10}";
+        HighScore_UI.text = $"<b>High Score: </b>{saveManager.saveData.HighScore}";
     }
 
     // function name is obvious
@@ -263,7 +269,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RestartRoutine()
     {
+        if (NewRecord_UI.gameObject.activeSelf) NewRecord_UI.gameObject.SetActive(false);
         SoundManager.Play("Click");
+        GameAnalyticsManager.instance.FunnelFinished(2, "Game_Restarted");
         yield return new WaitForSecondsRealtime(0.2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

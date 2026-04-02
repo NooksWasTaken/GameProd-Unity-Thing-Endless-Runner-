@@ -1,8 +1,8 @@
-using UnityEngine;
 using GameAnalyticsSDK;
+using GameAnalyticsSDK.Events;
 using System.Collections.Generic;
-public class GameAnalyticsManager : MonoBehaviour
-    , IGameAnalyticsATTListener
+using UnityEngine;
+public class GameAnalyticsManager : MonoBehaviour, IGameAnalyticsATTListener
 
 
 {
@@ -57,6 +57,10 @@ public class GameAnalyticsManager : MonoBehaviour
         }
     }
 
+    public void TrackEvent(GAProgressionStatus Status, string ProgressionName)
+    {
+        GameAnalytics.NewProgressionEvent(Status, ProgressionName);
+    }
 
     private void LogMissionComplete(string missionName)
     {

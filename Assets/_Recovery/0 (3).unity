@@ -1034,7 +1034,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   saveManager: {fileID: 0}
-  gameAnalytics: {fileID: 0}
   prefabSpawner: {fileID: 0}
   player: {fileID: 0}
   noFlyZone: {fileID: 0}
@@ -16432,9 +16431,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1842733143}
-  - {fileID: 667014027}
-  - {fileID: 1940426706}
   - {fileID: 198802316}
   - {fileID: 1927782864}
   - {fileID: 889195313}
   - {fileID: 557152088}
+  - {fileID: 667014027}
+  - {fileID: 1940426706}

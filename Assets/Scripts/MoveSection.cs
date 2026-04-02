@@ -23,7 +23,7 @@ public class MoveSection : MonoBehaviour
     {
         // if GameManager exists and the game is not running, do nothing (avoids crashing)
         //if (gameManager != null && !gameManager.IsInGame)
-            return;
+            //return;
 
 
         // move section backward

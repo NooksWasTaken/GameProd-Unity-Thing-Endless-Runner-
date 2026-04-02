@@ -15,6 +15,8 @@ public class SpeedPowerUp : MonoBehaviour
             {
                 player.ActivateSpeedBoost(speedMultiplier, duration);
                 SoundManager.Play("PowerUp");
+
+                GameAnalyticsManager.instance.FunnelFinished(3, "or 3 Player_Obtained_Powerup");
             }
 
             Destroy(gameObject);

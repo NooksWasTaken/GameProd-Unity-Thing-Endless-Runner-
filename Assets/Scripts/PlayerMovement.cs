@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.collider.CompareTag("Obstacle") && !isinvincible)
         {
             gameManager.Lives--;
-            GameAnalyticsManager.instance.FunnelFinished(3, "Player_Obtained_Powerup");
+            //GameAnalyticsManager.instance.FunnelFinished(3, "Player_Obtained_Powerup");
         }
     }
 

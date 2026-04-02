@@ -4,6 +4,7 @@ using UnityEngine;
 public class RewardTrigger : MonoBehaviour
 {
     GameManager gameManager;
+    GameObject Bonus_UI;
 
     public int AdditionalPoints;
     int RandomMovementPath;
@@ -15,7 +16,9 @@ public class RewardTrigger : MonoBehaviour
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
+        Bonus_UI = gameManager.Bonus_UI;
+
         InitPos = transform.position;
         RandomMovementPath = Random.Range(0, 3);
         transform.rotation = Quaternion.Euler(90, 0, 0);
@@ -50,14 +53,19 @@ public class RewardTrigger : MonoBehaviour
 
             Debug.Log($"+{AdditionalPoints} BONUS!");
             SoundManager.Play("Reward");
+            GameAnalyticsManager.instance.FunnelFinished(3, "or 3 Player_Obtained_Powerup");
+
+            StartCoroutine("TriggerMessage");
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator TriggerMessage()
     {
-        if (other.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
+        Bonus_UI.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+        
+        Bonus_UI.SetActive(false);
+        Destroy(gameObject);
     }
 }

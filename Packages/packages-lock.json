@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.gameanalytics.sdk": {
+      "version": "file:../Assets/Game Analytics",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.168"
+      }
+    },
+    "com.google.external-dependency-manager": {
+      "version": "file:../Assets/Game Analytics/GooglePackages/com.google.external-dependency-manager-1.2.168.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.gameanalytics.sdk": "7.10.6"
+      }
+    },
     "com.merry-yellow.code-assist": {
       "version": "file:com.merry-yellow.code-assist",
       "depth": 0,

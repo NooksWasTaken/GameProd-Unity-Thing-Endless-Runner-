@@ -14,6 +14,8 @@ public class InvincibilityPowerUp : MonoBehaviour
             {
                 player.ActivateInvincibility(iFrames);
                 SoundManager.Play("PowerUp");
+
+                GameAnalyticsManager.instance.FunnelFinished(3, "or 3 Player_Obtained_Powerup");
             }
 
             Destroy(gameObject);
